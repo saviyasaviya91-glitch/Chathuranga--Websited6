@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Chathuranga Classes</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="admin-body">
+  <div class="bg-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <nav class="navbar admin-nav">
+    <a href="../index.html" class="logo"><span class="logo-mark">C</span> Admin<span class="gold">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#dashboard"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</a></li>
+      <li><a href="#students"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Students</a></li>
+      <li><a href="#papers"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Papers</a></li>
+      <li><a href="#scores"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Scores</a></li>
+      <li>
+        <a href="#" class="btn-ghost btn-logout-pill" onclick="event.preventDefault(); logoutAdmin();"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero header -->
+  <header class="admin-hero container">
+    <div class="admin-hero-badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Admin Control Center</div>
+    <h1 class="admin-hero-title">Welcome back, <span class="gold">Admin</span></h1>
+    <p class="admin-hero-sub">Manage students, papers, and scores — all in one elegant place.</p>
+  </header>
+
+  <section class="container section section-tight" id="dashboard">
+    <div class="section-head">
+      <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-3-3-4 4"/></svg></div>
+      <h2 class="section-title2">Dashboard <span class="gold">Overview</span></h2>
+    </div>
+    <div class="stats stats-premium" id="adminStats"></div>
+  </section>
+
+  <!-- Manage Students -->
+  <section id="students" class="container section section-tight">
+    <div class="panel-head">
+      <h3><span class="panel-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Manage Students</h3>
+      <div class="search-input-wrap">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="studentSearchAdmin" placeholder="Search by ID, name, email..." oninput="renderStudentTable()" />
+      </div>
+    </div>
+    <form id="addStudentForm" class="form-row form-premium glass pad">
+      <input required name="fullName" placeholder="Full Name" />
+      <input required name="username" placeholder="Username" />
+      <input required type="email" name="email" placeholder="Email" autocomplete="off" />
+      <input required type="password" name="password" placeholder="Password" minlength="6" autocomplete="new-password" />
+      <input type="number" name="monthsPaid" placeholder="Months Paid (e.g. 1)" min="1" />
+      <button class="btn btn-gold-fill" type="submit"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Student</button>
+    </form>
+    <div class="table-wrap glass">
+      <table id="studentTable">
+        <thead>
+          <tr><th>Student ID</th><th>Name</th><th>Username</th><th>Email</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Manage Papers -->
+  <section id="papers" class="container section section-tight">
+    <div class="panel-head"><h3><span class="panel-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span> Manage Papers</h3></div>
+    <form id="addPaperForm" class="form-row form-premium glass pad">
+      <input required name="title" placeholder="Paper Title" />
+      <input required name="subject" placeholder="Subject" value="Business Studies" />
+      <input required type="date" name="date" />
+      <input name="link" placeholder="Download URL (optional)" />
+      <button class="btn btn-gold-fill" type="submit"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Paper</button>
+    </form>
+    <div id="adminPapers" class="papers-grid"></div>
+  </section>
+
+  <!-- Manage Scores -->
+  <section id="scores" class="container section section-tight">
+    <div class="panel-head"><h3><span class="panel-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> Add / Manage Scores</h3></div>
+    <form id="addScoreForm" class="form-row form-premium glass pad">
+      <select required name="studentId" id="scoreStudent"></select>
+      <select required name="paperId" id="scorePaper"></select>
+      <input required type="number" min="0" max="100" name="marks" placeholder="Marks (0-100)" />
+      <button class="btn btn-gold-fill" type="submit"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Score</button>
+    </form>
+    <div class="table-wrap glass">
+      <table id="scoreTable">
+        <thead>
+          <tr><th>Student</th><th>Paper</th><th>Marks</th><th>Grade</th><th>Status</th><th>Action</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Liquid Glass Success Modal -->
+  <div id="successModal" class="modal-overlay" style="display:none;">
+    <div class="glass-box-liquid">
+      <div class="glass-icon"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h3>Student Registered!</h3>
+      <p class="modal-sub">Student account has been created successfully.</p>
+      <div class="details-wrapper">
+        <div class="detail-item">
+          <span class="label">Email Address:</span>
+          <span class="value" id="modalEmail"></span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Password:</span>
+          <span class="value">●●●●●●●● (hidden for security — share with the student privately)</span>
+        </div>
+      </div>
+      <button class="btn btn-gold-fill modal-close-btn" type="button" onclick="closeSuccessModal()">Awesome, Got it!</button>
+    </div>
+  </div>
+
+  <!-- ===== Premium Edit Student Modal ===== -->
+  <div id="editStudentModal" class="es-overlay" style="display:none;" onclick="if(event.target===this)closeEditStudent()">
+    <div class="es-card" role="dialog" aria-modal="true" aria-labelledby="esTitle">
+      <button class="es-close" type="button" onclick="closeEditStudent()" aria-label="Close">×</button>
+      <div class="es-head">
+        <div class="es-avatar" id="esAvatar">S</div>
+        <div>
+          <h3 id="esTitle">Edit Student</h3>
+          <p class="es-sub" id="esSub">Update profile · syncs to Cloud</p>
+        </div>
+      </div>
+
+      <form id="editStudentForm" class="es-form" autocomplete="off">
+        <input type="hidden" name="studentId" />
+
+        <label class="es-field">
+          <span>Full Name</span>
+          <input required name="fullName" placeholder="Full Name" />
+        </label>
+
+        <label class="es-field">
+          <span>Username</span>
+          <input required name="username" placeholder="username" />
+        </label>
+
+        <label class="es-field">
+          <span>Email <em class="es-hint">(profile only — login email වෙනස් කරන්නේ නෑ)</em></span>
+          <input required type="email" name="email" placeholder="email@example.com" />
+        </label>
+
+        <div class="es-row-2">
+          <label class="es-field">
+            <span>Paid Until</span>
+            <input type="date" name="paidUntil" />
+          </label>
+          <label class="es-field">
+            <span>Extend Months</span>
+            <input type="number" name="extendMonths" min="0" step="1" placeholder="0" />
+          </label>
+        </div>
+
+        <label class="es-field es-toggle">
+          <input type="checkbox" name="isActive" />
+          <span>Account Active</span>
+        </label>
+
+        <div class="es-actions">
+          <button type="button" class="btn btn-ghost" onclick="closeEditStudent()">Cancel</button>
+          <button type="submit" class="btn btn-gold-fill"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD7ujM1Yb1laA91ESAakI51nXkGmIqKljU",
+      authDomain: "chathuranga-classes-web.firebaseapp.com",
+      projectId: "chathuranga-classes-web",
+      storageBucket: "chathuranga-classes-web.firebasestorage.app",
+      messagingSenderId: "17337438971",
+      appId: "1:17337438971:web:a35e7f99e98fac218dd65e"
+    };
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <script src="../js/app.js"></script>
+
+  <script>
+    /* -------- Gate: admin must be signed in -------- */
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) { window.location.href = 'login.html'; return; }
+      console.log('Logged in as:', user.email);
+      await refreshAll();
+    });
+
+    async function refreshAll() {
+      await renderAdminStats();
+      await renderStudentTable();
+      await renderPapers('adminPapers', true);
+      await populateScoreSelects();
+      await renderScoreTable();
+    }
+
+    /* -------- Add Student -------- */
+    document.getElementById('addStudentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const studentEmail = f.email.value.toLowerCase().trim();
+      const studentPassword = f.password.value;
+      const months = parseInt(f.monthsPaid.value, 10) || 1;
+
+      const r = await registerStudentFirebase({
+        fullName: f.fullName.value,
+        username: f.username.value,
+        email: studentEmail,
+        password: studentPassword,
+        monthsPaid: months
+      });
+
+      if (!r.ok) { alert(r.message); return; }
+      f.reset();
+
+      document.getElementById('modalEmail').textContent = studentEmail;
+      document.getElementById('successModal').style.display = 'flex';
+
+      refreshAll();
+    });
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+
+    document.getElementById('addPaperForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      await addPaper({
+        title: f.title.value,
+        subject: f.subject.value,
+        date: f.date.value,
+        link: f.link.value || '#'
+      });
+      f.reset();
+      refreshAll();
+    });
+
+    document.getElementById('addScoreForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      await addScore(f.studentId.value, f.paperId.value, +f.marks.value);
+      f.reset();
+      refreshAll();
+    });
+
+    document.getElementById('editStudentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const btn = f.querySelector('button[type="submit"]');
+      const old = btn.innerHTML;
+      btn.disabled = true; btn.textContent = 'Saving…';
+      const r = await saveStudentEdit({
+        studentId:    f.studentId.value,
+        fullName:     f.fullName.value,
+        username:     f.username.value,
+        email:        f.email.value,
+        paidUntil:    f.paidUntil.value,
+        extendMonths: f.extendMonths.value,
+        isActive:     f.isActive.checked,
+      });
+      btn.disabled = false; btn.innerHTML = old;
+      if (!r.ok) { alert(r.message || 'Update failed'); return; }
+      closeEditStudent();
+      refreshAll();
+    });
+  </script>
+</body>
+</html>

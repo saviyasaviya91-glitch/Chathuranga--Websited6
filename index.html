@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- FIX: original favicon had a stray `}` that broke the SVG data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>BS</text></svg>" />
+
+  <title>Chathuranga M Herath — Business Studies Classes</title>
+  <meta name="description" content="Premium Business Studies classes by Chathuranga M Herath. Register, view papers, and track results." />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/loader.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <script>window.PL_CONFIG={title:'Welcome back',subtitle:'Loading your dashboard…',brand:"Chathuranga Classes",min:800};</script>
+  <script src="js/loader.js"></script>
+
+  
+
+  <!-- Floating WhatsApp button -->
+  <a href="https://wa.me/94743805151" class="whatsapp-float" target="_blank" rel="noopener" data-tooltip="Chat with us!">
+    <img src="images/WhatsApp.svg" alt="WhatsApp" />
+  </a>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">C</span> Chathuranga<span class="gold">.</span>
+    </a>
+
+    <!-- nav-auth is re-rendered by JS once the user logs in -->
+    <ul class="nav-links" id="nav-auth">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Sir</a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="pages/login.html" class="btn-ghost">Login</a></li>
+      <li class="register-hide">
+        <a href="pages/register.html" class="btn-gold">Register</a>
+      </li>
+    </ul>
+
+    <button class="burger" type="button" aria-label="Toggle navigation"
+            onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <span class="badge">★ Sri Lanka's Premier Business Studies Class</span>
+      <h1 class="hero-title">Chathuranga <span class="gold">M Herath</span></h1>
+      <p class="hero-role">Business Studies Teacher</p>
+      <p class="hero-tag">"Empowering future entrepreneurs through smart, structured &amp; passionate learning."</p>
+
+      <!-- FIX: previously had stray <li> inside this <div>. Replaced with proper anchors. -->
+      <div class="hero-buttons" id="hero-register-area">
+        <a href="pages/register.html" class="btn btn-primary register-hide">Register Now</a>
+        <a href="pages/login.html" class="btn btn-outline">Login</a>
+        <a href="#papers" class="btn btn-gold-fill">View Papers</a>
+      </div>
+    </div>
+
+    <div class="hero-card glass float">
+      <h3>Live Class Schedule</h3>
+      <ul>
+        <li><strong>Mon</strong> · Theory Class · 4:00 PM</li>
+        <li><strong>Wed</strong> · Paper Discussion · 5:00 PM</li>
+        <li><strong>Sat</strong> · Revision · 9:00 AM</li>
+      </ul>
+      <div class="card-foot">Next: <span class="gold">Monday 4:00 PM</span></div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="stats container">
+    <div class="stat glass"><h2 data-count="2400">0</h2><p>Total Students</p></div>
+    <div class="stat glass"><h2 data-count="180">0</h2><p>Total Papers</p></div>
+    <div class="stat glass"><h2 data-count="98">0</h2><p>Highest Score</p></div>
+    <div class="stat glass"><h2 data-count="15">0</h2><p>Years Experience</p></div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section container">
+    <h2 class="section-title">About <span class="gold">Sir</span></h2>
+    <p class="section-sub">Meet the mentor behind thousands of success stories.</p>
+    <div class="about-grid">
+      <div class="about-text glass">
+        <img src="images/sir.jpg" alt="Chathuranga M Herath" class="sir-photo" />
+        <h3>Chathuranga M Herath</h3>
+        <p>A passionate Business Studies educator with over 15 years of teaching experience. Known for transforming complex business concepts into clear, memorable, and exam-ready knowledge.</p>
+        <p>His mission is to nurture confident, analytical, and ethically driven future business leaders.</p>
+      </div>
+      <div class="qual-grid">
+        <div class="qcard glass"><h4>BBA (Hons)</h4><p>University of Colombo</p></div>
+        <div class="qcard glass"><h4>MBA</h4><p>PIM, Sri Lanka</p></div>
+        <div class="qcard glass"><h4>CIMA</h4><p>UK Qualified</p></div>
+        <div class="qcard glass"><h4>15+ Years</h4><p>Teaching Excellence</p></div>
+      </div>
+    </div>
+
+    <div class="about-grid mt">
+      <div class="glass pad">
+        <h3>Teaching Experience</h3>
+        <ul class="ticked">
+          <li>15+ years coaching A/L Business Studies</li>
+          <li>Visiting lecturer at leading institutes</li>
+          <li>Author of 12+ revision papers</li>
+        </ul>
+      </div>
+      <div class="glass pad">
+        <h3>Student Success</h3>
+        <ul class="ticked">
+          <li>50+ Island Rank holders</li>
+          <li>92% A/B grade rate</li>
+          <li>2400+ students mentored</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Papers -->
+  <section id="papers" class="section container">
+    <h2 class="section-title">Past <span class="gold">Papers</span></h2>
+    <p class="section-sub">Download structured papers and track your performance.</p>
+    <div id="papersGrid" class="papers-grid"></div>
+  </section>
+
+  <!-- Results lookup -->
+  <section id="results" class="section container">
+    <h2 class="section-title">Result <span class="gold">Lookup</span></h2>
+    <p class="section-sub">Enter your Student user to view your results.</p>
+    <div class="search-wrap">
+      <input id="studentSearch" placeholder="Enter Student user..." />
+      <button type="button" onclick="searchStudent()">🔍 Search</button>
+    </div>
+    <div id="searchResult" class="result-area"></div>
+  </section>
+
+  <!-- Student Testimonials / Feedback -->
+  <section id="testimonials" class="section container ts-section">
+    <h2 class="section-title">Student <span class="gold">Voices</span></h2>
+    <p class="section-sub">Sir-gen igena gaththu shishyayinge feedback &amp; success stories.</p>
+
+    <div class="ts-grid">
+      <article class="ts-card">
+        <div class="ts-quote">“</div>
+        <p class="ts-text">
+          Sir-ge pasal walin pasu Business Studies anduru naa. Concepts ekak ekak pehedili karala, real-life examples ekka mehema watahanawa kawadawath dakka naa. <strong>A pass</strong> ekak ganna puluwan unath, danata danata business ekak patan ganna confidence eka labuna.
+        </p>
+        <div class="ts-meta">
+          <div class="ts-avatar" style="background:linear-gradient(135deg,#ffcc00,#ff8a00)">S</div>
+          <div>
+            <div class="ts-name">Sahan Perera</div>
+            <div class="ts-role">A/L 2024 · A pass</div>
+          </div>
+          <div class="ts-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="ts-card">
+        <div class="ts-quote">“</div>
+        <p class="ts-text">
+          Online papers ekka, weekly results tracking eka, ethakota chat support eka — meka hari premium experience ekak. Mage results 35% sita 82% dakwa eduna 6 months ekata. <strong>Best decision</strong> mage A/L journey ekata.
+        </p>
+        <div class="ts-meta">
+          <div class="ts-avatar" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)">N</div>
+          <div>
+            <div class="ts-name">Nethmi Jayawardena</div>
+            <div class="ts-role">A/L 2024 · 82 marks</div>
+          </div>
+          <div class="ts-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="ts-card">
+        <div class="ts-quote">“</div>
+        <p class="ts-text">
+          Sir hari patient, ehema hari friendly. Mokak hari prashnayak thiyenawa nam, WhatsApp ekata message ekak danna, minutes withara walin reply. Ape pasala teacher kenek mehema hithanne ne — <strong>truly dedicated.</strong>
+        </p>
+        <div class="ts-meta">
+          <div class="ts-avatar" style="background:linear-gradient(135deg,#f472b6,#a855f7)">K</div>
+          <div>
+            <div class="ts-name">Kavindu Silva</div>
+            <div class="ts-role">A/L 2023 · A pass</div>
+          </div>
+          <div class="ts-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="ts-card">
+        <div class="ts-quote">“</div>
+        <p class="ts-text">
+          Past papers collection eka unbelievable. Sir kiyala dunna techniques walin time management eka loku improvement ekak una. <strong>3 hours paper eka 2 1/2 walin liyanna puluwan,</strong> aanaduwa naethuwa.
+        </p>
+        <div class="ts-meta">
+          <div class="ts-avatar" style="background:linear-gradient(135deg,#34d399,#10b981)">D</div>
+          <div>
+            <div class="ts-name">Dilini Fernando</div>
+            <div class="ts-role">A/L 2024 · B pass</div>
+          </div>
+          <div class="ts-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="ts-card">
+        <div class="ts-quote">“</div>
+        <p class="ts-text">
+          Marketing, Management, Accounting — okkoma chapter wala practical examples ekka kiyala dunna. Theory padam karanawata wadiya <strong>understand karanna</strong> puluwan una. Thanks Sir!
+        </p>
+        <div class="ts-meta">
+          <div class="ts-avatar" style="background:linear-gradient(135deg,#fb7185,#e11d48)">T</div>
+          <div>
+            <div class="ts-name">Tharindu Bandara</div>
+            <div class="ts-role">A/L 2023 · 76 marks</div>
+          </div>
+          <div class="ts-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="ts-card">
+        <div class="ts-quote">“</div>
+        <p class="ts-text">
+          Class fees ekata kalin hithuwe wadi kiyala. Eth experience eka ganna kota — premium dashboard, papers library, results tracking, personal attention — meka <strong>worth every rupee.</strong> Recommend karanawa hema kenekutama.
+        </p>
+        <div class="ts-meta">
+          <div class="ts-avatar" style="background:linear-gradient(135deg,#facc15,#f97316)">A</div>
+          <div>
+            <div class="ts-name">Amaya Wickramasinghe</div>
+            <div class="ts-role">A/L 2024 · A pass</div>
+          </div>
+          <div class="ts-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="ts-cta">
+      <p>Obath api ekka adhyapanaye margaya patan gannawada?</p>
+      <a href="pages/register.html" class="btn btn-gold-fill register-hide">Join the Class</a>
+    </div>
+  </section>
+
+
+  <!-- ====== Student Feedback Videos — Coming Soon ====== -->
+  <section id="student-videos" class="section container cv-section">
+    <div class="cv-head">
+      <span class="cv-pill"><span class="cv-dot"></span> COMING SOON</span>
+      <h2 class="cv-title">Student <span>Video Feedback</span></h2>
+      <p class="cv-sub">Apita igena gaththu apa sigayanage real video reviews ekkala kalin daanawa. Real experience, real results — direct from the students.</p>
+    </div>
+
+    <div class="cv-grid">
+      <article class="cv-card">
+        <div class="cv-thumb">
+          <div class="cv-shimmer"></div>
+          <div class="cv-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z" fill="currentColor"/></svg></div>
+          <span class="cv-badge">A/L 2024</span>
+          <span class="cv-dur">Soon</span>
+          <div class="cv-avatar" style="background:linear-gradient(135deg,#f5c451,#e0a83a)">S</div>
+        </div>
+        <div class="cv-body">
+          <h3>Sahan Perera</h3>
+          <p>"Sir ge piliyak ekka mama A pass eka ganne hethuwa…" — video review.</p>
+        </div>
+      </article>
+
+      <article class="cv-card">
+        <div class="cv-thumb cv-thumb-2">
+          <div class="cv-shimmer"></div>
+          <div class="cv-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z" fill="currentColor"/></svg></div>
+          <span class="cv-badge">A/L 2024</span>
+          <span class="cv-dur">Soon</span>
+          <div class="cv-avatar" style="background:linear-gradient(135deg,#22d3ee,#0891b2)">N</div>
+        </div>
+        <div class="cv-body">
+          <h3>Nethmi Jayawardena</h3>
+          <p>"Online classes ekkala mage doubts okkoma clear una." — student story.</p>
+        </div>
+      </article>
+
+      <article class="cv-card">
+        <div class="cv-thumb cv-thumb-3">
+          <div class="cv-shimmer"></div>
+          <div class="cv-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5z" fill="currentColor"/></svg></div>
+          <span class="cv-badge">A/L 2023</span>
+          <span class="cv-dur">Soon</span>
+          <div class="cv-avatar" style="background:linear-gradient(135deg,#f472b6,#db2777)">K</div>
+        </div>
+        <div class="cv-body">
+          <h3>Kavindu Silva</h3>
+          <p>"Past paper discussions thama best part eka." — video testimonial.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="cv-notice">
+      <span class="cv-spark">🎥</span>
+      <div>
+        <b>Coming Soon —</b> student video feedback eka thawama upload karala nahe. Oyalata video review ekak denna oneda? <a href="pages/contact.html" style="color:#f5c451;text-decoration:underline">Contact us</a>.
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container foot-grid">
+      <div>
+        <h3>Chathuranga<span class="gold">.</span></h3>
+        <p>Premium Business Studies education for the next generation of leaders.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#about">About</a><a href="#papers">Papers</a><a href="pages/login.html">Login</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <div class="socials">
+          <a href="#" aria-label="Website">🌐</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+    </div>
+    <p class="copy">© <span id="yr"></span> Chathuranga M Herath · All Rights Reserved</p>
+  </footer>
+
+  <!-- PDF preview modal -->
+  <div id="pdfModal" class="pdf-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close-modal" onclick="closePdf()">&times;</span>
+      </div>
+      <iframe id="pdfFrame" src="" frameborder="0" title="Paper preview"></iframe>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Firebase config (web API key is safe to expose; Firestore rules enforce access).
+    const firebaseConfig = {
+      apiKey: "AIzaSyD7ujM1Yb1laA91ESAakI51nXkGmIqKljU",
+      authDomain: "chathuranga-classes-web.firebaseapp.com",
+      projectId: "chathuranga-classes-web",
+      storageBucket: "chathuranga-classes-web.firebasestorage.app",
+      messagingSenderId: "17337438971",
+      appId: "1:17337438971:web:a35e7f99e98fac218dd65e"
+    };
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <script src="js/app.js"></script>
+
+  <script>
+    /* -------- Stat counter animation -------- */
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target.querySelector('h2');
+        const target = +el.dataset.count;
+        let n = 0;
+        const step = Math.max(1, target / 60);
+        const t = setInterval(() => {
+          n += step;
+          if (n >= target) { n = target; clearInterval(t); }
+          el.textContent = Math.floor(n) + (target >= 100 ? '+' : '');
+        }, 20);
+        statObserver.unobserve(e.target);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      /* -------- Remember-Me session guard --------
+       * If the user did NOT tick "Remember Me", we clear them on a fresh
+       * browser session (when sessionStorage is empty). */
+      if (!sessionStorage.getItem('sessionActive')) {
+        const storedUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (storedUser && storedUser.isRemembered === false) {
+          localStorage.removeItem('currentUser');
+        }
+        sessionStorage.setItem('sessionActive', 'true');
+      }
+
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      const navAuth = document.getElementById('nav-auth');
+      const registerArea = document.getElementById('hero-register-area');
+
+      // Start counters + year
+      document.querySelectorAll('.stat').forEach((s) => statObserver.observe(s));
+      document.getElementById('yr').textContent = new Date().getFullYear();
+
+      if (!currentUser) {
+        // Logged-out users see a lock card instead of papers.
+        const papersGrid = document.getElementById('papersGrid');
+        if (papersGrid) {
+          papersGrid.innerHTML = `
+            <p class="empty locked-msg">
+              🔒 පේපර්ස් බලාගැනීම සහ බාගත කිරීම සඳහා කරුණාකර මුලින්ම පද්ධතියට ඇතුළත් වන්න (Login).
+            </p>`;
+        }
+        return;
+      }
+
+      // Logged-in nav: username + expiry + logout
+      const expiryString = currentUser.exp || 'No Date';
+      if (navAuth) {
+        navAuth.innerHTML = `
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Sir</a></li>
+          <li><a href="#papers">Papers</a></li>
+          <li><a href="#results">Results</a></li>
+
+          <li style="position: relative; display: inline-block;">
+                <a href="javascript:void(0)" id="servicesDropdownBtn" style="color: #ffcc00; font-weight: 600; padding: 10px 15px; display: inline-block; text-decoration: none;">
+                    Services ▾
+                </a>
+                <ul id="servicesMenu" style="display: none; position: absolute; top: 100%; left: 0; background: #111111; border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px; padding: 6px 0; min-width: 170px; list-style: none; margin: 5px 0 0 0; box-shadow: 0 4px 15px rgba(0,0,0,0.6); z-index: 999;">
+                    <li><a href="pages/all-papers.html" style="padding: 10px 20px; display: block; color: #ffffff; font-size: 14px; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='#ffcc00'; this.style.background='rgba(255,215,0,0.05)'" onmouseout="this.style.color='#ffffff'; this.style.background='transparent'">All Papers</a></li>
+                    <li><a href="pages/zoom.html" style="padding: 10px 20px; display: block; color: #ffffff; font-size: 14px; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='#ffcc00'; this.style.background='rgba(255,215,0,0.05)'" onmouseout="this.style.color='#ffffff'; this.style.background='transparent'">Zoom Link</a></li>
+                    <li><a href="pages/class-videos.html" style="padding: 10px 20px; display: block; color: #ffffff; font-size: 14px; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='#ffcc00'; this.style.background='rgba(255,215,0,0.05)'" onmouseout="this.style.color='#ffffff'; this.style.background='transparent'">Class Videos</a></li>
+                </ul>
+            </li>
+
+          <li class="user-info">
+            <div class="user-details">
+              <span class="gold">${currentUser.username}</span>
+              <span class="muted">Exp: ${expiryString}</span>
+            </div>
+            <a href="javascript:void(0)" class="btn-logout" onclick="executeLogout()">Logout</a>
+          </li>
+        `;
+      }
+
+      if (registerArea) {
+        registerArea.innerHTML = `<a href="#papers" class="btn btn-gold-fill">View Papers</a>`;
+      }
+
+      /* -------- Firestore-backed subscription check + paper render -------- */
+      firebase.auth().onAuthStateChanged(async (user) => {
+        if (!user) { executeLogout(); return; }
+        try {
+          const sId = currentUser.studentId || currentUser.id;
+          const doc = await db.collection('students').doc(sId).get();
+          if (!doc.exists) return;
+
+          const studentData = doc.data();
+          const today = new Date();
+          const isExpired = !!(studentData.paidUntil && studentData.paidUntil.toDate() < today);
+
+          const papersGrid = document.getElementById('papersGrid');
+          const dropBtn = document.getElementById('servicesDropdownBtn');
+          const dropMenu = document.getElementById('servicesMenu');
+
+          // Services dropdown toggle (blocks if subscription expired)
+          if (dropBtn && dropMenu) {
+            dropBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              if (isExpired) {
+                alert('ඔබේ මාසික ගෙවීම් කාලය අවසන් වී ඇත! කරුණාකර පන්ති ගාස්තු ගෙවා සර්විස් එක නැවත සක්‍රිය කරගන්න.');
+                return;
+              }
+              dropMenu.style.display = dropMenu.style.display === 'block' ? 'none' : 'block';
+            });
+            document.addEventListener('click', () => { dropMenu.style.display = 'none'; });
+          }
+
+          if (isExpired) {
+            if (papersGrid) {
+              papersGrid.innerHTML = `
+                <p class="empty locked-msg expired">
+                  🔒 ඔබේ මාසික ගෙවීම් කාලය අවසන් වී ඇත (Expired). කරුණාකර පන්ති ගාස්තු ගෙවා ගිණුම යාවත්කාලීන කරගන්න.
+                </p>`;
+            }
+          } else {
+            renderPapers('papersGrid');
+          }
+        } catch (error) {
+          console.error('Firestore error:', error);
+        }
+      });
+    });
+
+    /* -------- Logout -------- */
+    function executeLogout() {
+      localStorage.removeItem('currentUser');
+      const done = () => window.location.reload();
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        firebase.auth().signOut().then(done).catch(done);
+      } else {
+        done();
+      }
+    }
+    window.executeLogout = executeLogout;
+
+    /* -------- Light anti-copy guard (UX only; trivially bypassable) -------- */
+    document.addEventListener('contextmenu', (event) => event.preventDefault());
+    document.addEventListener('keydown', (e) => {
+      const k = e.key;
+      if (k === 'F12') e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && (k === 'I' || k === 'C' || k === 'J')) e.preventDefault();
+      if (e.ctrlKey && k === 'U') e.preventDefault();
+    });
+  </script>
+</body>
+</html>

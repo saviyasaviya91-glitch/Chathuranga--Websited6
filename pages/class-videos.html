@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Class Videos — Coming Soon | Chathuranga Classes</title>
+  <link rel="stylesheet" href="../css/loader.css">
+  <script>window.PL_CONFIG={title:"Loading Class Videos",subtitle:"Preparing the library…",brand:"Chathuranga Classes",min:800};</script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy-900:#070b1f; --navy-800:#0b1230;
+      --gold:#f5c451; --gold-2:#e0a83a; --cyan:#22d3ee; --pink:#f472b6; --purple:#7c5cff;
+      --white:#fff; --muted:#a9b3d6;
+      --glass:rgba(255,255,255,0.06);
+      --glass-bd:rgba(255,255,255,0.12);
+      --gold-grad:linear-gradient(135deg,#f5c451,#e0a83a);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;min-height:100%;}
+    body{
+      font-family:'Poppins',sans-serif; color:#fff;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.28), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(34,211,238,.20), transparent 60%),
+        radial-gradient(800px 600px at 50% 110%, rgba(244,114,182,.18), transparent 60%),
+        linear-gradient(135deg,#070b1f 0%, #0b1230 50%, #070b1f 100%);
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:40px 20px; overflow-x:hidden; position:relative;
+    }
+    body::before, body::after{content:""; position:fixed; border-radius:50%; filter:blur(80px); opacity:.35; z-index:0; pointer-events:none;}
+    body::before{width:380px;height:380px;background:#7c5cff;top:-100px;left:-100px;animation:float1 14s ease-in-out infinite;}
+    body::after{width:420px;height:420px;background:#22d3ee;bottom:-140px;right:-120px;animation:float2 18s ease-in-out infinite;}
+    @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+    @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-30px)}}
+
+    .wrap{position:relative; z-index:2; width:100%; max-width:640px;}
+
+    .top-back{
+      display:inline-flex; align-items:center; gap:8px;
+      color:#cfd6ff; text-decoration:none; font-size:13px;
+      padding:8px 14px; border:1px solid var(--glass-bd);
+      border-radius:999px; background:rgba(255,255,255,.04);
+      backdrop-filter:blur(10px); margin-bottom:18px; transition:.25s;
+    }
+    .top-back:hover{background:rgba(255,255,255,.08); transform:translateX(-3px)}
+
+    .card{
+      position:relative;
+      background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      border:1px solid var(--glass-bd);
+      border-radius:26px; padding:46px 36px 40px;
+      backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);
+      box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+      overflow:hidden; text-align:center;
+    }
+    .card::before{
+      content:""; position:absolute; inset:-1px; border-radius:26px; padding:1px;
+      background:conic-gradient(from 0deg, transparent, rgba(245,196,81,.55), transparent 30%, rgba(34,211,238,.45), transparent 60%, rgba(244,114,182,.45), transparent);
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      animation:spin 10s linear infinite; opacity:.65; pointer-events:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 14px; border-radius:999px;
+      background:rgba(245,196,81,.12); border:1px solid rgba(245,196,81,.4);
+      color:#ffe7a8; font-size:12px; font-weight:600; letter-spacing:.5px; text-transform:uppercase;
+      margin-bottom:24px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(245,196,81,.7);animation:pulse 1.6s infinite;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,196,81,.7)}70%{box-shadow:0 0 0 14px rgba(245,196,81,0)}100%{box-shadow:0 0 0 0 rgba(245,196,81,0)}}
+
+    .reel{
+      position:relative; width:120px; height:120px; margin:0 auto 22px;
+      border-radius:34px;
+      background:linear-gradient(135deg,#1a2350,#0b1230);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 20px 50px rgba(124,92,255,.45), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    .reel::before, .reel::after{
+      content:""; position:absolute; border-radius:50%; border:2px solid rgba(245,196,81,.45);
+      animation:ring 2.4s ease-out infinite;
+    }
+    .reel::before{inset:-10px;}
+    .reel::after{inset:-20px; animation-delay:.8s; border-color:rgba(34,211,238,.45);}
+    @keyframes ring{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.25);opacity:0}}
+    .reel svg{width:58px;height:58px;fill:url(#g1);filter:drop-shadow(0 4px 14px rgba(245,196,81,.5));}
+
+    h1{
+      font-size:32px; font-weight:800; margin:6px 0 10px; letter-spacing:.3px;
+      background:linear-gradient(135deg,#fff 0%, #ffe7a8 50%, #fff 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .sub{color:var(--muted); font-size:15px; line-height:1.6; margin:0 auto 26px; max-width:460px;}
+
+    .countdown{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:0 auto 28px; max-width:440px;
+    }
+    .cdx{
+      background:rgba(255,255,255,.05); border:1px solid var(--glass-bd);
+      border-radius:14px; padding:14px 6px; position:relative; overflow:hidden;
+    }
+    .cdx .n{font-size:26px;font-weight:800;color:#fff;display:block;line-height:1;font-variant-numeric:tabular-nums;}
+    .cdx .l{font-size:10px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin-top:6px;display:block;}
+
+    .features{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 0 26px;}
+    .feat{
+      background:rgba(255,255,255,.04); border:1px solid var(--glass-bd);
+      border-radius:14px; padding:14px 10px; text-align:center;
+    }
+    .feat .ic{
+      width:36px;height:36px;border-radius:10px;margin:0 auto 8px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .feat:nth-child(1) .ic{background:linear-gradient(135deg,#f5c451,#e0a83a);}
+    .feat:nth-child(2) .ic{background:linear-gradient(135deg,#22d3ee,#0ea5b7);}
+    .feat:nth-child(3) .ic{background:linear-gradient(135deg,#f472b6,#c4408d);}
+    .feat svg{width:18px;height:18px;fill:#0b1230}
+    .feat .t{font-size:12px;font-weight:600;color:#fff;}
+    .feat .d{font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+    .progress{
+      width:100%; height:8px; background:rgba(255,255,255,.06);
+      border:1px solid var(--glass-bd); border-radius:999px; overflow:hidden; margin-bottom:8px;
+    }
+    .progress > i{
+      display:block; height:100%; width:42%;
+      background:linear-gradient(90deg,#f5c451,#22d3ee,#f472b6);
+      background-size:200% 100%; animation:shine 3s linear infinite;
+      border-radius:999px;
+    }
+    @keyframes shine{0%{background-position:0% 0}100%{background-position:200% 0}}
+    .pmeta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:22px}
+
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:14px 26px; border-radius:14px; font-weight:700; font-size:14px;
+      text-decoration:none; color:#0b1230;
+      background:var(--gold-grad);
+      box-shadow:0 18px 40px rgba(245,196,81,.35), inset 0 1px 0 rgba(255,255,255,.4);
+      position:relative; overflow:hidden; transition:.25s;
+    }
+    .cta::after{
+      content:""; position:absolute; inset:0; transform:translateX(-100%);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+      animation:swipe 2.6s linear infinite;
+    }
+    @keyframes swipe{to{transform:translateX(100%)}}
+    .cta:hover{transform:translateY(-2px); box-shadow:0 24px 50px rgba(245,196,81,.5)}
+    .cta svg{width:16px;height:16px;fill:#0b1230;position:relative;z-index:1}
+
+    .note{margin-top:18px;font-size:12px;color:var(--muted)}
+    .note b{color:#ffe7a8}
+
+    @media(max-width:480px){
+      .card{padding:36px 22px 30px}
+      h1{font-size:26px}
+      .features{grid-template-columns:1fr 1fr 1fr; gap:8px}
+      .feat .d{display:none}
+      .countdown{gap:6px}
+      .cdx .n{font-size:22px}
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#f5c451"/>
+        <stop offset="100%" stop-color="#e0a83a"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="wrap">
+    <a href="../index.html" class="top-back">← Back to Home</a>
+
+    <div class="card">
+      <span class="badge"><span class="dot"></span> Coming Very Soon</span>
+
+      <div class="reel" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+
+      <h1>Class Videos Library</h1>
+      <p class="sub">Recorded lessons, revisions and model paper discussions — all in one premium video library. We're putting the final touches together so you get the smoothest learning experience.</p>
+
+      <div class="countdown" id="cdwn">
+        <div class="cdx"><span class="n" id="cd-d">00</span><span class="l">Days</span></div>
+        <div class="cdx"><span class="n" id="cd-h">00</span><span class="l">Hours</span></div>
+        <div class="cdx"><span class="n" id="cd-m">00</span><span class="l">Minutes</span></div>
+        <div class="cdx"><span class="n" id="cd-s">00</span><span class="l">Seconds</span></div>
+      </div>
+
+      <div class="features">
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 6.5l-6 4.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-5l6 4.5v-11z"/></svg></div>
+          <div class="t">HD Lessons</div>
+          <div class="d">Crystal clear recordings</div>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 11h-2V7h2z"/></svg></div>
+          <div class="t">Anytime Access</div>
+          <div class="d">Watch on your time</div>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+          <div class="t">Model Papers</div>
+          <div class="d">Detailed walkthroughs</div>
+        </div>
+      </div>
+
+      <div class="progress"><i></i></div>
+      <div class="pmeta"><span>Building the library</span><span>42% ready</span></div>
+
+      <a class="cta" href="zoom.html">
+        Join Live Class Meanwhile
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+
+      <div class="note">📢 You'll be <b>notified automatically</b> the moment Class Videos go live. No extra action needed.</div>
+    </div>
+  </div>
+
+  <script>
+    // Countdown to a target — set 30 days ahead, persisted in localStorage so it's stable
+    (function(){
+      const KEY='cv_target_ts';
+      let target = parseInt(localStorage.getItem(KEY)||'0',10);
+      const now = Date.now();
+      if(!target || target < now){
+        target = now + 30*24*60*60*1000;
+        localStorage.setItem(KEY, target);
+      }
+      const pad = n => String(n).padStart(2,'0');
+      function tick(){
+        const diff = Math.max(0, target - Date.now());
+        const d = Math.floor(diff/86400000);
+        const h = Math.floor(diff%86400000/3600000);
+        const m = Math.floor(diff%3600000/60000);
+        const s = Math.floor(diff%60000/1000);
+        document.getElementById('cd-d').textContent = pad(d);
+        document.getElementById('cd-h').textContent = pad(h);
+        document.getElementById('cd-m').textContent = pad(m);
+        document.getElementById('cd-s').textContent = pad(s);
+      }
+      tick(); setInterval(tick,1000);
+    })();
+  </script>
+  <script src="../js/loader.js"></script>
+</body>
+</html>

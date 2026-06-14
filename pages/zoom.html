@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Zoom Class — Chathuranga Classes</title>
+  <link rel="stylesheet" href="../css/loader.css">
+  <script>window.PL_CONFIG={title:"Opening Live Class",subtitle:"Preparing your Zoom session…",brand:"Chathuranga Classes",min:800};</script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --navy-900:#070b1f; --navy-800:#0b1230; --navy-700:#101a4a;
+      --gold:#f5c451; --gold-2:#e0a83a; --cyan:#22d3ee; --pink:#f472b6;
+      --white:#fff; --muted:#a9b3d6;
+      --glass:rgba(255,255,255,0.05);
+      --glass-bd:rgba(255,255,255,0.12);
+      --gold-grad:linear-gradient(135deg,#f5c451,#e0a83a);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;min-height:100%;}
+    body{
+      font-family:'Poppins',sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(34,211,238,.18), transparent 60%),
+        radial-gradient(800px 600px at 50% 110%, rgba(244,114,182,.18), transparent 60%),
+        linear-gradient(135deg,#070b1f 0%, #0b1230 50%, #070b1f 100%);
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:40px 20px;
+      overflow-x:hidden;
+      position:relative;
+    }
+    /* floating blobs */
+    body::before, body::after{
+      content:""; position:fixed; border-radius:50%; filter:blur(80px); opacity:.35; z-index:0; pointer-events:none;
+    }
+    body::before{ width:380px; height:380px; background:#7c5cff; top:-100px; left:-100px; animation:float1 14s ease-in-out infinite;}
+    body::after{ width:420px; height:420px; background:#22d3ee; bottom:-140px; right:-120px; animation:float2 18s ease-in-out infinite;}
+    @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+    @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-30px)}}
+
+    .wrap{position:relative; z-index:2; width:100%; max-width:520px;}
+
+    .top-back{
+      display:inline-flex; align-items:center; gap:8px;
+      color:#cfd6ff; text-decoration:none; font-size:13px;
+      padding:8px 14px; border:1px solid var(--glass-bd);
+      border-radius:999px; background:rgba(255,255,255,.04);
+      backdrop-filter:blur(10px); margin-bottom:18px;
+      transition:.25s;
+    }
+    .top-back:hover{background:rgba(255,255,255,.08); transform:translateX(-3px)}
+
+    .card{
+      position:relative;
+      background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      border:1px solid var(--glass-bd);
+      border-radius:24px;
+      padding:40px 32px 36px;
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
+      overflow:hidden;
+      text-align:center;
+    }
+    /* shine border */
+    .card::before{
+      content:""; position:absolute; inset:-1px; border-radius:24px; padding:1px;
+      background:conic-gradient(from 0deg, transparent, rgba(245,196,81,.55), transparent 30%, rgba(34,211,238,.45), transparent 60%, rgba(244,114,182,.45), transparent);
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      animation:spin 10s linear infinite; opacity:.6; pointer-events:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 14px; border-radius:999px;
+      background:rgba(239,68,68,.12); border:1px solid rgba(239,68,68,.35);
+      color:#fecaca; font-size:12px; font-weight:600; letter-spacing:.4px;
+      margin-bottom:22px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%; background:#ef4444;
+      box-shadow:0 0 0 0 rgba(239,68,68,.6);
+      animation:pulse 1.6s infinite;
+    }
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)} 70%{box-shadow:0 0 0 12px rgba(239,68,68,0)} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+
+    .zoom-logo{
+      width:74px; height:74px; margin:0 auto 18px;
+      border-radius:22px;
+      background:linear-gradient(135deg,#2D8CFF,#1565d8);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 18px 40px rgba(45,140,255,.45), inset 0 1px 0 rgba(255,255,255,.3);
+      position:relative;
+    }
+    .zoom-logo svg{width:42px; height:42px; fill:#fff}
+    .zoom-logo::after{
+      content:""; position:absolute; inset:-6px; border-radius:26px;
+      border:1px solid rgba(45,140,255,.35); animation:ring 2.4s ease-out infinite;
+    }
+    @keyframes ring{0%{transform:scale(.9);opacity:.8}100%{transform:scale(1.25);opacity:0}}
+
+    h1{
+      margin:0 0 10px; font-size:30px; font-weight:800; letter-spacing:-.5px;
+      background:linear-gradient(135deg,#fff 0%, #f5c451 60%, #e0a83a 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .sub{color:var(--muted); font-size:14px; margin:0 0 26px; line-height:1.6}
+
+    .zoom-btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      width:100%; padding:16px 22px;
+      background:var(--gold-grad); color:#1a1206;
+      font-weight:700; font-size:15px; letter-spacing:.3px;
+      text-decoration:none; border-radius:14px;
+      box-shadow:0 18px 40px rgba(245,196,81,.35), inset 0 1px 0 rgba(255,255,255,.4);
+      transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      position:relative; overflow:hidden;
+    }
+    .zoom-btn::after{
+      content:""; position:absolute; top:0; left:-80%; width:60%; height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+      transform:skewX(-20deg); animation:shine 3s infinite;
+    }
+    @keyframes shine{0%{left:-80%}60%,100%{left:120%}}
+    .zoom-btn:hover{transform:translateY(-2px); box-shadow:0 24px 50px rgba(245,196,81,.5)}
+    .zoom-btn svg{width:18px;height:18px}
+
+    .meta{
+      margin-top:26px;
+      display:grid; grid-template-columns:1fr; gap:10px;
+    }
+    .meta-row{
+      display:flex; align-items:center; gap:12px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--glass-bd);
+      border-radius:12px;
+      font-size:13px; color:#dfe4ff; text-align:left;
+    }
+    .meta-ico{
+      width:32px; height:32px; flex:0 0 32px; border-radius:9px;
+      display:flex; align-items:center; justify-content:center; font-size:15px;
+      background:linear-gradient(135deg, rgba(245,196,81,.18), rgba(245,196,81,.06));
+      border:1px solid rgba(245,196,81,.3); color:#f5c451;
+    }
+    .meta-row.cyan .meta-ico{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(34,211,238,.06)); border-color:rgba(34,211,238,.3); color:#22d3ee}
+    .meta-row.pink .meta-ico{background:linear-gradient(135deg,rgba(244,114,182,.18),rgba(244,114,182,.06)); border-color:rgba(244,114,182,.3); color:#f472b6}
+
+    .notice{
+      margin-top:22px;
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 14px;
+      background:rgba(245,196,81,.07);
+      border:1px solid rgba(245,196,81,.25);
+      border-radius:12px;
+      font-size:12.5px; color:#ffe6a8; text-align:left; line-height:1.5;
+    }
+    .notice b{color:#fff5d6}
+
+    .foot{
+      margin-top:18px; font-size:11.5px; color:#7e87b3; letter-spacing:.4px;
+    }
+    .foot b{color:#cfd6ff}
+
+    @media (max-width:480px){
+      .card{padding:32px 22px}
+      h1{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <a href="../index.html" class="top-back">← Back to Home</a>
+
+    <div class="card">
+      <div class="badge"><span class="dot"></span> LIVE CLASS ACCESS</div>
+
+      <div class="zoom-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h8A2.5 2.5 0 0 1 16 7.5v9A2.5 2.5 0 0 1 13.5 19h-8A2.5 2.5 0 0 1 3 16.5v-9Zm15 1.7 3.3-2.4c.5-.4 1.2 0 1.2.6v9.2c0 .6-.7 1-1.2.6L18 14.8V9.2Z"/></svg>
+      </div>
+
+      <h1>Join Your Zoom Class</h1>
+      <p class="sub">Click below to enter today's live Business Studies session with Chathuranga Sir.</p>
+
+      <!-- 🔥 YOUR ZOOM LINK -->
+      <a class="zoom-btn" href="https://zoom.us/j/XXXXXXXXXXX" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h8A2.5 2.5 0 0 1 16 7.5v9A2.5 2.5 0 0 1 13.5 19h-8A2.5 2.5 0 0 1 3 16.5v-9Zm15 1.7 3.3-2.4c.5-.4 1.2 0 1.2.6v9.2c0 .6-.7 1-1.2.6L18 14.8V9.2Z"/></svg>
+        Join Zoom Meeting
+      </a>
+
+      <div class="meta">
+        <div class="meta-row">
+          <div class="meta-ico">📅</div>
+          <div><b>Mon · Wed · Sat</b> — Weekly Live Classes</div>
+        </div>
+        <div class="meta-row cyan">
+          <div class="meta-ico">⏰</div>
+          <div>Time: <b>As per class schedule</b></div>
+        </div>
+        <div class="meta-row pink">
+          <div class="meta-ico">🎓</div>
+          <div>Business Studies — A/L 2026 / 2027</div>
+        </div>
+      </div>
+
+      <div class="notice">
+        <span>⚠️</span>
+        <div><b>Please login</b> before joining the meeting. Use your real name in Zoom so the host can admit you.</div>
+      </div>
+
+      <div class="foot">Powered by <b>Chathuranga Classes</b></div>
+    </div>
+  </div>
+
+  <script src="../js/loader.js"></script>
+</body>
+</html>

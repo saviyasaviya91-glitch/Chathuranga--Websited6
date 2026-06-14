@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Papers — Chathuranga M Herath</title>
+
+  <!-- FIX: relative paths corrected (this file lives in /pages/, not site root) -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/loader.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Page-specific Premium Glassmorphism */
+    body { background:#0a0a0a; color:#fff; font-family:'Poppins',sans-serif; min-height:100vh; }
+    .papers-header-section {
+      text-align:center; padding:120px 20px 5px;
+      background:linear-gradient(to bottom, rgba(255,215,0,.05), transparent);
+    }
+    .page-title { font-family:'Playfair Display',serif; font-size:3rem; font-weight:700; margin-bottom:10px; }
+    .page-title .gold { color:#ffcc00; text-shadow:0 0 20px rgba(255,204,0,.4); }
+    .back-home-btn {
+      display:inline-flex; align-items:center; gap:8px; color:#a0aab2;
+      font-size:.95rem; transition:.3s; margin-bottom:20px;
+      background:rgba(255,255,255,.03); padding:8px 18px; border-radius:50px;
+      border:1px solid rgba(255,255,255,.05);
+    }
+    .back-home-btn:hover {
+      color:#ffcc00; background:rgba(255,215,0,.08);
+      border-color:rgba(255,215,0,.3); box-shadow:0 0 15px rgba(255,215,0,.1);
+    }
+    .papers-container { max-width:1100px; margin:0 auto; padding:40px 20px 80px; }
+    .premium-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:25px; }
+    .premium-card {
+      background:rgba(255,255,255,.02); backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:25px;
+      position:relative; overflow:hidden;
+      transition:all .4s cubic-bezier(.165,.84,.44,1);
+      display:flex; flex-direction:column; justify-content:space-between;
+      box-shadow:0 8px 32px rgba(0,0,0,.3);
+      animation:fadeInUp .6s ease forwards; opacity:0;
+    }
+    @keyframes fadeInUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+    .premium-card:hover {
+      transform:translateY(-8px); border-color:rgba(255,215,0,.4);
+      background:rgba(255,255,255,.04); box-shadow:0 12px 40px rgba(255,215,0,.08);
+    }
+    .premium-card::before {
+      content:''; position:absolute; top:0; left:0; width:100%; height:4px;
+      background:linear-gradient(90deg, #ffcc00, #ffae00); opacity:0; transition:.3s;
+    }
+    .premium-card:hover::before { opacity:1; }
+    .premium-tag {
+      background:rgba(255,215,0,.1); color:#ffcc00; font-size:11px; font-weight:700;
+      padding:4px 12px; border-radius:50px; align-self:flex-start;
+      text-transform:uppercase; letter-spacing:.5px;
+      border:1px solid rgba(255,215,0,.15); margin-bottom:15px;
+    }
+    .premium-card h4 { font-size:1.25rem; font-weight:600; line-height:1.4; margin:0 0 10px; }
+    .premium-meta { font-size:13px; color:#a0aab2; margin-bottom:20px; display:flex; align-items:center; gap:6px; }
+    .premium-actions { display:flex; gap:10px; margin-top:auto; }
+    .premium-actions .btn {
+      flex:1; padding:10px 15px; font-size:13px; font-weight:600;
+      border-radius:8px; text-align:center; cursor:pointer; transition:.2s;
+    }
+    .btn-view-premium { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.15); }
+    .btn-view-premium:hover { background:rgba(255,255,255,.05); border-color:#fff; }
+    .btn-download-premium {
+      background:linear-gradient(135deg, #ffcc00, #ffae00); color:#000 !important;
+      border:none; box-shadow:0 4px 15px rgba(255,204,0,.2);
+    }
+    .btn-download-premium:hover { transform:scale(1.02); box-shadow:0 6px 20px rgba(255,204,0,.4); }
+    .load-more-box { text-align:center; margin-top:50px; }
+    .btn-load-more {
+      background:rgba(255,215,0,.05); color:#ffcc00;
+      border:1px solid rgba(255,215,0,.3); padding:14px 40px;
+      font-size:15px; font-weight:600; border-radius:50px; cursor:pointer; transition:.3s;
+    }
+    .btn-load-more:hover { background:#ffcc00; color:#000; box-shadow:0 0 25px rgba(255,204,0,.3); }
+    .lock-container {
+      text-align:center; padding:60px 30px;
+      background:rgba(255,255,255,.02); border:1px dashed rgba(255,255,255,.1);
+      border-radius:16px; max-width:600px; margin:40px auto;
+    }
+    @media (max-width:600px) { .page-title { font-size:2.1rem; } .papers-header-section { padding:90px 16px 0; } }
+  </style>
+</head>
+<body>
+  <script>window.PL_CONFIG={title:'All Papers',subtitle:'Fetching your premium resource library…',brand:"Chathuranga Classes",min:800};</script>
+  <script src="../js/loader.js"></script>
+
+
+  <div class="bg-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="papers-header-section">
+    <!-- FIX: was index.html (404 from /pages/) -->
+    <a href="../index.html" class="back-home-btn">← Back to Dashboard</a>
+    <h1 class="page-title">Premium <span class="gold">Resource Library</span></h1>
+    <p style="color:#a0aab2; font-size:1.05rem; max-width:600px; margin:0 auto 30px;">
+      ඔබගේ විෂය නිර්දේශයට අදාළ සියලුම පසුගිය විභාග ප්‍රශ්න පත්‍ර සහ ආදර්ශ ප්‍රශ්න පත්‍ර මෙතැනින් ලබාගන්න.
+    </p>
+  </header>
+
+  <main class="papers-container">
+    <div id="allPapersGrid" class="premium-grid"></div>
+    <div id="pagedBtnArea" class="load-more-box"></div>
+  </main>
+
+  <div id="pdfModal" class="pdf-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close-modal" onclick="closePdf()">&times;</span>
+      </div>
+      <iframe id="pdfFrame" src="" frameborder="0" title="Paper preview"></iframe>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <!-- FIX: auth-compat was missing; Firestore rules require request.auth -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD7ujM1Yb1laA91ESAakI51nXkGmIqKljU",
+      authDomain: "chathuranga-classes-web.firebaseapp.com",
+      projectId: "chathuranga-classes-web",
+      storageBucket: "chathuranga-classes-web.firebasestorage.app",
+      messagingSenderId: "17337438971",
+      appId: "1:17337438971:web:a35e7f99e98fac218dd65e"
+    };
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <!-- FIX: was js/app.js -->
+  <script src="../js/app.js"></script>
+
+  <script>
+    /* Pagination state */
+    let lastVisiblePaperDoc = null;
+    const limitPerPage = 5;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      const grid = document.getElementById('allPapersGrid');
+
+      if (!currentUser) {
+        grid.style.display = 'block';
+        grid.innerHTML = `
+          <div class="lock-container">
+            <span style="font-size:3.5rem;">🔒</span>
+            <h3 style="color:#ffcc00; margin-top:15px; font-size:1.4rem;">පද්ධතිය සුරක්ෂිත කර ඇත</h3>
+            <p style="color:#a0aab2; margin-top:10px; line-height:1.6;">
+              මෙම ප්‍රිමියම් ප්‍රශ්න පත්‍ර පරිශීලනය කිරීම සඳහා කරුණාකර පළමුව ඔබගේ ශිෂ්‍ය ගිණුමෙන් පද්ධතියට ඇතුළු වන්න (Login).
+            </p>
+            <!-- FIX: was pages/login.html; we're already in /pages/ -->
+            <a href="login.html" class="btn btn-gold-fill" style="display:inline-block; margin-top:20px; padding:12px 30px; border-radius:8px;">Login to Account</a>
+          </div>`;
+        return;
+      }
+
+      // Firestore requires auth — wait for the persisted auth session before loading.
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) { window.location.href = 'login.html'; return; }
+        loadPremiumPapersPaged(false);
+      });
+    });
+
+    /* Load papers 5-at-a-time from Firestore (with pagination) */
+    async function loadPremiumPapersPaged(isNextPage = false) {
+      const grid = document.getElementById('allPapersGrid');
+      const btnArea = document.getElementById('pagedBtnArea');
+
+      if (!isNextPage) {
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#ffcc00; font-size:1.1rem;">⏳ Loading Resource Library...</p>';
+        lastVisiblePaperDoc = null;
+      }
+
+      try {
+        let query = db.collection('papers').orderBy('createdAt', 'desc').limit(limitPerPage);
+        if (isNextPage && lastVisiblePaperDoc) query = query.startAfter(lastVisiblePaperDoc);
+
+        const snapshot = await query.get();
+
+        if (snapshot.empty) {
+          if (!isNextPage) {
+            grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#a0aab2;">No papers found in the database.</p>';
+          }
+          btnArea.innerHTML = '<p style="color:#a0aab2; font-size:14px;">සෑම ප්‍රශ්න පත්‍රයක්ම ලෝඩ් කර අවසන්.</p>';
+          return;
+        }
+
+        if (!isNextPage) grid.innerHTML = '';
+
+        let delayIndex = 0;
+        snapshot.forEach((doc) => {
+          const p = doc.data();
+          const paperDate = typeof formatDate === 'function' ? formatDate(p.date) : p.date;
+
+          grid.insertAdjacentHTML('beforeend', `
+            <div class="premium-card" style="animation-delay:${delayIndex * 0.1}s">
+              <div>
+                <span class="premium-tag">${p.subject || 'Business Studies'}</span>
+                <h4>${p.title}</h4>
+                <div class="premium-meta">📅 ${paperDate}</div>
+              </div>
+              <div class="premium-actions">
+                <a class="btn btn-view-premium" onclick="viewPdf('${p.link}')">👁️ View</a>
+                <a class="btn btn-download-premium" href="${p.link}" download="${p.title}.pdf">⬇️ Download</a>
+              </div>
+            </div>`);
+          delayIndex++;
+        });
+
+        lastVisiblePaperDoc = snapshot.docs[snapshot.docs.length - 1];
+
+        if (snapshot.docs.length === limitPerPage) {
+          btnArea.innerHTML = `<button class="btn-load-more" onclick="loadPremiumPapersPaged(true)">Load More Papers</button>`;
+        } else {
+          btnArea.innerHTML = '<p style="color:#a0aab2; font-size:14px; margin-top:20px;">✓ සෑම ප්‍රශ්න පත්‍රයක්ම ලෝඩ් කර අවසන්.</p>';
+        }
+      } catch (error) {
+        console.error('Error loading paged papers:', error);
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#ff4d4d;">Error loading papers. Please try again.</p>';
+      }
+    }
+  </script>
+</body>
+</html>

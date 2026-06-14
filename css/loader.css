@@ -1,0 +1,80 @@
+/* Premium Page Loader — shared overlay */
+.pl-overlay{
+  position:fixed; inset:0; z-index:99999;
+  display:grid; place-items:center;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(255,204,0,.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(124,92,255,.20), transparent 60%),
+    linear-gradient(160deg,#070b18,#0e1430);
+  color:#eef2ff;
+  font-family:'Poppins','Inter',system-ui,sans-serif;
+  opacity:1; transition:opacity .55s ease, visibility .55s ease;
+}
+.pl-overlay.pl-hide{ opacity:0; visibility:hidden; pointer-events:none }
+.pl-overlay::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse at center,#000 35%, transparent 75%);
+          mask-image: radial-gradient(ellipse at center,#000 35%, transparent 75%);
+  animation: pl-drift 18s linear infinite; pointer-events:none;
+}
+@keyframes pl-drift{ to{ background-position:440px 440px } }
+
+.pl-stage{ position:relative; text-align:center; padding:40px 28px; z-index:1 }
+.pl-brand{
+  position:absolute; top:22px; left:50%; transform:translateX(-50%);
+  font-size:11px; letter-spacing:.4em; color:#9aa3c7; text-transform:uppercase;
+}
+.pl-loader{ position:relative; width:160px; height:160px; margin:0 auto 30px; display:grid; place-items:center }
+.pl-ring{
+  position:absolute; inset:0; border-radius:50%;
+  background: conic-gradient(from 0deg, transparent 0 70%, #ffcc00 86%, transparent 100%) border-box;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  border:2px solid transparent; animation: pl-spin 1.6s linear infinite;
+  filter: drop-shadow(0 0 14px rgba(255,204,0,.55));
+}
+.pl-ring.r2{ inset:14px; background: conic-gradient(from 180deg, transparent 0 75%, #22d3ee 90%, transparent 100%) border-box; animation-duration:2.4s; animation-direction:reverse; filter:drop-shadow(0 0 10px rgba(34,211,238,.45)) }
+.pl-ring.r3{ inset:28px; background: conic-gradient(from 90deg, transparent 0 80%, #f472b6 92%, transparent 100%) border-box; animation-duration:3.2s; filter:drop-shadow(0 0 8px rgba(244,114,182,.4)) }
+@keyframes pl-spin{ to{ transform:rotate(360deg) } }
+.pl-core{
+  width:56px; height:56px; border-radius:16px;
+  background: linear-gradient(135deg,#ffcc00,#ff8a00);
+  box-shadow:0 10px 40px rgba(255,204,0,.55), inset 0 0 20px rgba(255,255,255,.25);
+  display:grid; place-items:center; animation: pl-pulse 1.8s ease-in-out infinite;
+  color:#1a1200; font-weight:800; font-family:'Playfair Display',serif; font-size:24px;
+}
+@keyframes pl-pulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+.pl-title{
+  font-size: clamp(20px, 3vw, 28px); margin:0 0 6px; font-weight:700; letter-spacing:.2px;
+  background: linear-gradient(90deg,#fff,#ffe9a8 50%,#fff);
+  background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation: pl-shimmer 3.5s linear infinite;
+}
+@keyframes pl-shimmer{ to{ background-position:-200% 0 } }
+.pl-sub{ margin:0 0 24px; color:#9aa3c7; font-size:13.5px; letter-spacing:.3px }
+.pl-bar{
+  width:min(340px,78vw); height:6px; margin:0 auto;
+  background: rgba(255,255,255,.07); border-radius:999px; overflow:hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.pl-bar > i{
+  display:block; height:100%; width:40%; border-radius:999px;
+  background: linear-gradient(90deg,#ffcc00,#22d3ee,#f472b6);
+  animation: pl-slide 1.6s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(255,204,0,.55);
+}
+@keyframes pl-slide{
+  0%{transform:translateX(-120%); width:30%}
+  50%{width:55%}
+  100%{transform:translateX(320%); width:30%}
+}
+.pl-dots{ margin-top:16px; display:flex; gap:6px; justify-content:center }
+.pl-dots span{ width:6px; height:6px; border-radius:50%; background:#9aa3c7; opacity:.5; animation: pl-blink 1.4s ease-in-out infinite }
+.pl-dots span:nth-child(2){ animation-delay:.2s }
+.pl-dots span:nth-child(3){ animation-delay:.4s }
+@keyframes pl-blink{ 0%,100%{opacity:.25; transform:translateY(0)} 50%{opacity:1; transform:translateY(-2px)} }
