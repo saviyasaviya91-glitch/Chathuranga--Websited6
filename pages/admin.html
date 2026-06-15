@@ -17,6 +17,7 @@
       <li><a href="#students"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Students</a></li>
       <li><a href="#papers"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Papers</a></li>
       <li><a href="#scores"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Scores</a></li>
+      <li><a href="#zoom"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>Zoom Link</a></li>
       <li>
         <a href="#" class="btn-ghost btn-logout-pill" onclick="event.preventDefault(); logoutAdmin();"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
       </li>
@@ -95,6 +96,21 @@
         <tbody></tbody>
       </table>
     </div>
+  </section>
+
+  <!-- Manage Zoom Link -->
+  <section id="zoom" class="container section section-tight">
+    <div class="panel-head">
+      <h3><span class="panel-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></span> Live Zoom Link</h3>
+    </div>
+    <form id="zoomLinkForm" class="form-row form-premium glass pad">
+      <input required type="url" name="link" id="zoomLinkInput" placeholder="https://zoom.us/j/XXXXXXXXXXX" style="flex:1; min-width:280px;" />
+      <button class="btn btn-gold-fill" type="submit">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Save Zoom Link
+      </button>
+    </form>
+    <p id="zoomLinkStatus" class="es-hint" style="margin-top:10px;"></p>
   </section>
 
   <!-- Liquid Glass Success Modal -->
@@ -205,7 +221,45 @@
       await renderPapers('adminPapers', true);
       await populateScoreSelects();
       await renderScoreTable();
+      await loadZoomLink();
     }
+
+    /* -------- Zoom Link (settings/zoom) -------- */
+    async function loadZoomLink() {
+      try {
+        const snap = await db.collection('settings').doc('zoom').get();
+        const link = snap.exists ? (snap.data().link || '') : '';
+        const input = document.getElementById('zoomLinkInput');
+        if (input) input.value = link;
+        const s = document.getElementById('zoomLinkStatus');
+        if (s) s.textContent = link ? 'Current live link loaded.' : 'No Zoom link set yet.';
+      } catch (err) {
+        console.error('loadZoomLink error:', err);
+      }
+    }
+
+    document.getElementById('zoomLinkForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const link = f.link.value.trim();
+      const status = document.getElementById('zoomLinkStatus');
+      const btn = f.querySelector('button[type="submit"]');
+      const old = btn.innerHTML;
+      btn.disabled = true; btn.textContent = 'Saving…';
+      try {
+        await db.collection('settings').doc('zoom').set({
+          link,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          updatedBy: firebase.auth().currentUser ? firebase.auth().currentUser.email : null
+        }, { merge: true });
+        status.textContent = '✅ Zoom link updated. Students will see it instantly.';
+      } catch (err) {
+        console.error(err);
+        status.textContent = '❌ Failed to save: ' + (err.message || err);
+      } finally {
+        btn.disabled = false; btn.innerHTML = old;
+      }
+    });
 
     /* -------- Add Student -------- */
     document.getElementById('addStudentForm').addEventListener('submit', async (e) => {
